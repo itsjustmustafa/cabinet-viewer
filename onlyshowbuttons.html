@@ -14,17 +14,17 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 100px;
+            gap: 5%;
         }
 
         .product img {
-            max-width: 500px;
-            max-height: 500px;
+            max-width: 30%;
+            max-height: 30%;
             width: auto;
             height: auto;
         }
 
-        .product ar-button {
+        .product model-viewer {
             position: absolute;
         }
     </style>
@@ -34,15 +34,15 @@
     <div class="app">
         <div class="product">
             <img src="./photos/Coffee Table.png">
-            <ar-button src="./models/Coffee Table.glb" title="An amazing Coffee Table">
-                See in Augmented Reality
-            </ar-button>
+            <model-viewer src="./models/Coffee\ Table.glb" poster="./photos/Coffee\ Table.png" shadow-intensity="1" ar
+                reveal="manual" alt="An amazing coffee table">
+            </model-viewer>
         </div>
         <div class="product">
             <img src="./photos/Metal Cabinet.png">
-            <ar-button src="./models/Metal Cabinet.glb" title="One of a kind Metal Cabinet">
-                See in Augmented Reality
-            </ar-button>
+            <model-viewer src="./models/Metal\ Cabinet.glb" poster="./photos/Metal\ Cabinet.png" shadow-intensity="1" ar
+                reveal="manual" alt="A unique metal cabinet">
+            </model-viewer>
         </div>
     </div>
 </body>
