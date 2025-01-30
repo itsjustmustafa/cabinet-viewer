@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Furniture Viewer</title>
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+    <script type="module" src="https://unpkg.com/@leoncvlt/ar-button"></script>
+    <link rel="stylesheet" href="https://unpkg.com/@leoncvlt/ar-button/styles.css">
+    <style>
+        .app {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 100px;
+        }
+
+        .product img {
+            max-width: 500px;
+            max-height: 500px;
+            width: auto;
+            height: auto;
+        }
+
+        .product ar-button {
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <div class="product">
+            <img src="./photos/Coffee Table.png">
+            <ar-button src="./models/Coffee Table.glb" title="An amazing Coffee Table">
+                See in Augmented Reality
+            </ar-button>
+        </div>
+        <div class="product">
+            <img src="./photos/Metal Cabinet.png">
+            <ar-button src="./models/Metal Cabinet.glb" title="One of a kind Metal Cabinet">
+                See in Augmented Reality
+            </ar-button>
+        </div>
+    </div>
+</body>
