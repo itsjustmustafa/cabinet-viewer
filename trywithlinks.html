@@ -14,7 +14,7 @@
         <li><a href="#" onclick="openAR('Coffee Table')">Table</a></li>
         <li><a href="#" onclick="openAR('Metal Cabinet')">Cupboard</a></li>
     </ul> -->
-    <h3>Try these buttons! v.3</h3>
+    <h3>Try these buttons! v.4</h3>
     <button class="ar-start-button" title="Coffee Table" onclick="handleOpenAR(this)">Coffee Table</button>
     <button class="ar-start-button" title="Metal Cabinet" onclick="handleOpenAR(this)">Metal Cabinet</button>
 
@@ -35,7 +35,8 @@
                 });
                 if (!hasTried) {
                     hasTried = true;
-                    setTimeout(() => button.click(), 1000);
+                    button.innerHTML = button.title + " (Loading...)";
+                    setTimeout(() => button.click(), 500);
                 }
             } else {
                 const arButtons = document.getElementsByClassName("ar-start-button");
