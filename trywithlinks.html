@@ -14,7 +14,7 @@
         <li><a href="#" onclick="openAR('Coffee Table')">Table</a></li>
         <li><a href="#" onclick="openAR('Metal Cabinet')">Cupboard</a></li>
     </ul> -->
-    <h3>Try these buttons! v.4</h3>
+    <h3>Try these buttons! ver. 5</h3>
     <button class="ar-start-button" title="Coffee Table" onclick="handleOpenAR(this)">Coffee Table</button>
     <button class="ar-start-button" title="Metal Cabinet" onclick="handleOpenAR(this)">Metal Cabinet</button>
 
@@ -30,6 +30,7 @@
             modelViewer.src = `./models/${button.title}.glb`;
             if (modelViewer.canActivateAR || !hasTried) {
                 modelViewer.activateAR().then(value => {
+                    button.innerHTML = button.title;
                     console.log("tried to activate AR... and the result...")
                     console.log(value)
                 });
