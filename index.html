@@ -9,11 +9,10 @@
 </head>
 
 <body>
-<!--     <model-viewer src="./models/Coffee\ Table.glb" poster="./photos/Coffee\ Table.png" shadow-intensity="1" ar reveal="manual"
+    <!--     <model-viewer src="./models/Coffee\ Table.glb" poster="./photos/Coffee\ Table.png" shadow-intensity="1" ar reveal="manual"
         camera-controls touch-action="pan-y" alt="A 3D model carousel"> -->
     <img src="photos/Coffee Table.png" />
-    <model-viewer src="./models/Coffee\ Table.glb"
-        shadow-intensity="1" ar reveal="manual" alt="A 3D model carousel">
+    <model-viewer src="./models/Coffee\ Table.glb" shadow-intensity="1" ar reveal="manual" alt="A 3D model carousel">
 
         <button slot="ar-button" id="ar-button">
             View in your space
@@ -69,11 +68,12 @@
         body {
             margin: 0px;
         }
+
         model-viewer {
-/*             background-color: #eee; */
-/*             overflow: hidden; */
-            position: fixed;
-            z-index: 100;
+            background-color: #eee;
+            overflow-x: hidden;
+            width: 100vw;
+            height: 100vh;
         }
 
         #ar-button {
