@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR Furniture Viewer</title>
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+</head>
+
+<body>
+    <h1>Select an Item:</h1>
+    <ul>
+        <li><a href="#" onclick="openAR('Coffee Table')">Table</a></li>
+        <li><a href="#" onclick="openAR('Metal Cabinet')">Cupboard</a></li>
+    </ul>
+
+    <model-viewer id="viewer" style="display: none;" ar ar-modes="webxr scene-viewer quick-look">
+        <button slot="ar-button" id="ar-button" style="display: none;">View in your space</button>
+    </model-viewer>
+
+    <script>
+        function openAR(modelName) {
+            const modelViewer = document.getElementById("viewer");
+            modelViewer.src = `./models/${modelName}.glb`;
+
+            // Check if AR is supported
+            if (modelViewer.canActivateAR) {
+                modelViewer.activateAR();
+            } else {
+                alert("AR is not supported on this device.");
+            }
+        }
+    </script>
+</body>
+
+</html>
