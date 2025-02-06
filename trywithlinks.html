@@ -14,9 +14,9 @@
         <li><a href="#" onclick="openAR('Coffee Table')">Table</a></li>
         <li><a href="#" onclick="openAR('Metal Cabinet')">Cupboard</a></li>
     </ul> -->
-    <h3>Try these buttons!</h3>
-    <button class="ar-start-button" title="Coffee Table" onclick="openAR('Coffee Table')">Coffee Table</button>
-    <button class="ar-start-button" title="Metal Cabinet" onclick="openAR('Metal Cabinet')">Metal Cabinet</button>
+    <h3>Try these buttons! v.1</h3>
+    <button class="ar-start-button" title="Coffee Table" onclick="handleOpenAR(this)">Coffee Table</button>
+    <button class="ar-start-button" title="Metal Cabinet" onclick="openAR(this)">Metal Cabinet</button>
 
     <model-viewer id="viewer" style="display: none;" ar ar-modes="webxr scene-viewer quick-look">
         <button slot="ar-button" id="ar-button" style="display: none;">View in your space</button>
@@ -24,15 +24,18 @@
 
     <script>
         let hasTried = false;
-        function openAR(modelName) {
+        function handleOpenAR(button) {
             const modelViewer = document.getElementsByTagName("model-viewer")[0];
-            modelViewer.src = `./models/${modelName}.glb`;
+            modelViewer.src = `./models/${button.title}.glb`;
             if (modelViewer.canActivateAR || !hasTried) {
                 modelViewer.activateAR().then(value => {
                     console.log("tried to activate AR... and the result...")
                     console.log(value)
                 });
-                hasTried = true;
+                if (!hasTried) {
+                    hasTried = true;
+                    button.click();
+                }
             } else {
                 const arButtons = document.getElementsByClassName("ar-start-button");
                 for (element of arButtons) {
