@@ -11,7 +11,6 @@
 <body>
 <!--     <model-viewer src="./models/Coffee\ Table.glb" poster="./photos/Coffee\ Table.png" shadow-intensity="1" ar reveal="manual"
         camera-controls touch-action="pan-y" alt="A 3D model carousel"> -->
-    <img src="./photos/Coffee\ Table.png" />
     <model-viewer src="./models/Coffee\ Table.glb"
         shadow-intensity="1" ar reveal="manual" alt="A 3D model carousel">
 
@@ -42,13 +41,12 @@
 
     <script type="module">
         const modelViewer = document.querySelector("model-viewer");
-        const furnitureImage = document.querySelector("img");
+
         window.switchSrc = (element, name) => {
             const modelBase = "./models/" + name;
             const photoBase = "./photos/" + name;
             modelViewer.src = modelBase + '.glb';
             modelViewer.poster = photoBase + '.webp';
-            furnitureImage.src = photoBase + ".webp';
             const slides = document.querySelectorAll(".slide");
             slides.forEach((element) => { element.classList.remove("selected"); });
             element.classList.add("selected");
