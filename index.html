@@ -25,19 +25,19 @@
         <button id="ar-failure">
             AR is not tracking!
         </button>
-    </model-viewer>
-    <div class="slider">
-        <div class="slides">
-            <button class="slide selected" onclick="switchSrc(this, 'Coffee Table')"
-                style="background-image: url('./photos/Coffee\ Table.png');">
 
-            </button><button class="slide" onclick="switchSrc(this, 'Metal Cabinet')"
-                style="background-image: url('./photos/Metal\ Cabinet.png');">
+        <div class="slider">
+            <div class="slides">
+                <button class="slide selected" onclick="switchSrc(this, 'Coffee Table')"
+                    style="background-image: url('./photos/Coffee\ Table.png');">
 
-            </button>
+                </button><button class="slide" onclick="switchSrc(this, 'Metal Cabinet')"
+                    style="background-image: url('./photos/Metal\ Cabinet.png');">
+
+                </button>
+            </div>
         </div>
-    </div>
-
+    </model-viewer>
 
     <script type="module">
         const modelViewer = document.querySelector("model-viewer");
@@ -67,13 +67,13 @@
         body {
             margin: 0px;
         }
-/* 
+
         model-viewer {
             background-color: #eee;
             overflow: hidden;
             width: 100vw;
             height: 100vh;
-        } */
+        }
 
         #ar-button {
             background-image: url(./assets/ic_view_in_ar_new_googblue_48dp.png);
