@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <h1>Select an Item:</h1>
+    <h1>Select an Item from below:</h1>
     <ul>
         <li><a href="#" onclick="openAR('Coffee Table')">Table</a></li>
         <li><a href="#" onclick="openAR('Metal Cabinet')">Cupboard</a></li>
@@ -21,19 +21,17 @@
 
     <script>
         function openAR(modelName) {
-            const modelViewer = document.getElementById("viewer");
+            const modelViewer = document.getElementsByTagName("model-viewer")[0];
             modelViewer.src = `./models/${modelName}.glb`;
+            if (modelViewer.canActivateAR) {
+                modelViewer.activateAR().then(value => {
+                    console.log("tried to activate AR... and the result...")
+                    console.log(value)
+                });
+            } else {
+                alert("AR is not supported on this device.");
+            }
 
-            modelViewer.activateAR().then(value => {
-                console.log("tried to activate AR... and the result...")
-                console.log(value)
-            });
-
-            // Check if AR is supported
-            // if (modelViewer.canActivateAR) {
-            // } else {
-            //     alert("AR is not supported on this device.");
-            // }
         }
     </script>
 </body>
