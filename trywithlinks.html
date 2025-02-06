@@ -24,12 +24,16 @@
             const modelViewer = document.getElementById("viewer");
             modelViewer.src = `./models/${modelName}.glb`;
 
+            modelViewer.activateAR().then(value => {
+                console.log("tried to activate AR... and the result...")
+                console.log(value)
+            });
+
             // Check if AR is supported
-            if (modelViewer.canActivateAR) {
-                modelViewer.activateAR();
-            } else {
-                alert("AR is not supported on this device.");
-            }
+            // if (modelViewer.canActivateAR) {
+            // } else {
+            //     alert("AR is not supported on this device.");
+            // }
         }
     </script>
 </body>
