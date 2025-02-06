@@ -9,27 +9,35 @@
 </head>
 
 <body>
-    <h1>Select an Item from below:</h1>
+    <!-- <h1>Select an Item from below:</h1>
     <ul>
         <li><a href="#" onclick="openAR('Coffee Table')">Table</a></li>
         <li><a href="#" onclick="openAR('Metal Cabinet')">Cupboard</a></li>
-    </ul>
+    </ul> -->
+    <button class="ar-start-button" title="Coffee Table" onclick="openAR('Coffee Table')">Coffee Table</button>
+    <button class="ar-start-button" title="Metal Cabinet" onclick="openAR('Metal Cabinet')">Metal Cabinet</button>
 
     <model-viewer id="viewer" style="display: none;" ar ar-modes="webxr scene-viewer quick-look">
         <button slot="ar-button" id="ar-button" style="display: none;">View in your space</button>
     </model-viewer>
 
     <script>
+        let hasTried = false;
         function openAR(modelName) {
             const modelViewer = document.getElementsByTagName("model-viewer")[0];
             modelViewer.src = `./models/${modelName}.glb`;
-            if (modelViewer.canActivateAR) {
+            if (modelViewer.canActivateAR || !hasTried) {
                 modelViewer.activateAR().then(value => {
                     console.log("tried to activate AR... and the result...")
                     console.log(value)
                 });
+                hasTried = true;
             } else {
-                alert("AR is not supported on this device.");
+                const arButtons = document.getElementsByClassName("ar-start-button");
+                arButtons.array.forEach(element => {
+                    element.innerHTML = element.title + " (AR not supported)";
+                });
+                // alert("AR is not supported on this device.");
             }
 
         }
