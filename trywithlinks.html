@@ -14,9 +14,9 @@
         <li><a href="#" onclick="openAR('Coffee Table')">Table</a></li>
         <li><a href="#" onclick="openAR('Metal Cabinet')">Cupboard</a></li>
     </ul> -->
-    <h3>Try these buttons! v.1</h3>
+    <h3>Try these buttons! v.2</h3>
     <button class="ar-start-button" title="Coffee Table" onclick="handleOpenAR(this)">Coffee Table</button>
-    <button class="ar-start-button" title="Metal Cabinet" onclick="openAR(this)">Metal Cabinet</button>
+    <button class="ar-start-button" title="Metal Cabinet" onclick="handleOpenAR(this)">Metal Cabinet</button>
 
     <model-viewer id="viewer" style="display: none;" ar ar-modes="webxr scene-viewer quick-look">
         <button slot="ar-button" id="ar-button" style="display: none;">View in your space</button>
@@ -34,14 +34,13 @@
                 });
                 if (!hasTried) {
                     hasTried = true;
-                    button.click();
+                    setTimeout(() => button.click, 1000);
                 }
             } else {
                 const arButtons = document.getElementsByClassName("ar-start-button");
                 for (element of arButtons) {
                     element.innerHTML = element.title + " (AR not supported)";
                 }
-                // alert("AR is not supported on this device.");
             }
 
         }
