@@ -15,39 +15,97 @@
         <li><a href="#" onclick="openAR('Metal Cabinet')">Cupboard</a></li>
     </ul> -->
     <h3>Try these buttons! ver. 5</h3>
-    <button class="ar-start-button" title="Coffee Table" onclick="handleOpenAR(this)">Coffee Table</button>
-    <button class="ar-start-button" title="Metal Cabinet" onclick="handleOpenAR(this)">Metal Cabinet</button>
+    Coffee Table
+    <button class="ar-start-button" title="Coffee Table" onclick="handleOpenAR(this)">
+        <symbol class="ar"></symbol>
+        <p class="ar-button-text">View model in AR</p>
+    </button>
 
     <model-viewer id="viewer" style="display: none;" ar ar-modes="webxr scene-viewer quick-look">
         <button slot="ar-button" id="ar-button" style="display: none;">View in your space</button>
     </model-viewer>
 
     <script>
+        const defaultARButtonText = "View model in AR";
+        const loadingARButtonText = "Loading AR...";
+        const doesNotSupportARText = "AR not supported";
         let hasTried = false;
+        // let ar_button = document.getElementsByClassName("ar-start-button")[0];
+        // ar_button.querySelector(".ar-button-text");
         function handleOpenAR(button) {
+            const display_text = button.querySelector(".ar-button-text");
+            const ar_icon = button.querySelector("symbol");
             console.log("clicking...");
             const modelViewer = document.getElementsByTagName("model-viewer")[0];
             modelViewer.src = `./models/${button.title}.glb`;
             if (modelViewer.canActivateAR || !hasTried) {
+                display_text.innerHTML = loadingARButtonText;
                 modelViewer.activateAR().then(value => {
-                    button.innerHTML = button.title;
                     console.log("tried to activate AR... and the result...")
                     console.log(value)
+                    display_text.innerHTML = defaultARButtonText;
                 });
                 if (!hasTried) {
                     hasTried = true;
-                    button.innerHTML = button.title + " (Loading...)";
                     setTimeout(() => button.click(), 500);
                 }
             } else {
-                const arButtons = document.getElementsByClassName("ar-start-button");
-                for (element of arButtons) {
-                    element.innerHTML = element.title + " (AR not supported)";
-                }
+                display_text.innerHTML = doesNotSupportARText;
+                ar_icon.className = "no-ar";
+                button.classList.add("disabled");
+                button.disabled = true;
             }
 
         }
     </script>
+    <style>
+        .ar-start-button {
+            cursor: pointer;
+            font: inherit;
+            border-width: 2px;
+            border-style: solid;
+            border-color: rgb(0, 0, 0);
+            background-color: white;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            border-radius: 15px;
+            width: 200px;
+        }
+
+        .ar-start-button.disabled {
+            color: #6d6d6d;
+            border-color: #6d6d6d;
+            background-color: #dedede;
+            pointer-events: none;
+        }
+
+        .ar-start-button:hover {
+            background-color: #eee;
+        }
+
+        .ar-start-button p {
+            margin: unset;
+        }
+
+        symbol {
+            width: 2rem;
+            height: 2rem;
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        symbol.ar {
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="%23000000"><path d="M448-167 228-296q-13.77-8.43-21.39-22.21Q199-332 199-348v-257q0-16 7.61-29.79Q214.23-648.57 228-657l221-131q14-8 31-8t31 8l221 131q13.78 8.43 21.39 22.21Q761-621 761-605v257q0 16-7.87 29.79Q745.25-304.43 731-296L508-167q-14.33 8-30.16 8-15.84 0-29.84-8Zm2-69v-224L260-569v219l190 114Zm60 0 191-114v-219L510-460v224ZM80-691v-129q0-24.75 17.63-42.38Q115.25-880 140-880h129v60H140v129H80ZM269-80H140q-24.75 0-42.37-17.63Q80-115.25 80-140v-129h60v129h129v60Zm422 0v-60h129v-129h60v129q0 24.75-17.62 42.37Q844.75-80 820-80H691Zm129-611v-129H691v-60h129q24.75 0 42.38 17.62Q880-844.75 880-820v129h-60ZM480-514l190-110-190-109-190 109 190 110Zm0 25Zm0-25Zm30 54Zm-60 0Z"/></svg>');
+        }
+
+        symbol.no-ar {
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="%236D6D6D"><path d="M536-510Zm-54 32Zm260 174L329-717l120-71q14-8 31-8t31 8l221 131q13.78 8.29 21.39 22.23Q761-620.83 761-605v257q0 12.77-5 24.39Q751-312 742-304ZM448-167 228-296q-13.77-8.29-21.39-22.23Q199-332.17 199-348v-257q0-15.83 7.61-29.77Q214.23-648.71 228-657l47-28 207 207 207 207-181 104q-14.33 8-30.16 8-15.84 0-29.84-8Zm65-366Zm-63 73Zm108-28Zm-48 38ZM374-672l139 139 157-91-190-109-106 61Zm76 436v-224L260-569v219l190 114Zm251-109v-224l-143 81 143 143ZM510-236l134-80-134-134v214ZM833-41l-39-39H691v-60h55v8L126-748h14v57H80v-103l-54-54 43-43L876-84l-43 43Zm47-228v103l-60-60v-43h60ZM269-880v60h-43l-60-60h103Zm0 800H140q-24.75 0-42.37-17.63Q80-115.25 80-140v-129h60v129h129v60Zm551-611v-129H691v-60h129q24.75 0 42.38 17.62Q880-844.75 880-820v129h-60Z"/></svg>');
+        }
+    </style>
 </body>
 
 </html>
