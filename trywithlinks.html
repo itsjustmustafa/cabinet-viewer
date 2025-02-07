@@ -47,6 +47,31 @@
     </model-viewer>
 
     <script>
+        function detectMob() {
+            const toMatch = [
+                /Android/i,
+                /webOS/i,
+                /iPhone/i,
+                /iPad/i,
+                /iPod/i,
+                /BlackBerry/i,
+                /Windows Phone/i
+            ];
+
+            return toMatch.some((toMatchItem) => {
+                return navigator.userAgent.match(toMatchItem);
+            });
+        }
+
+        const isMobile = detectMob();
+        if (!isMobile) {
+            console.log("Not a mobile device!");
+            const allARButtons = document.getElementsByClassName("ar-start-button");
+            for (let button of allARButtons) {
+                button.classList.add("invisible");
+            }
+        }
+
         const defaultARButtonText = "View model in AR";
         const loadingARButtonText = "Loading AR...";
         const doesNotSupportARText = "AR not supported";
@@ -97,6 +122,10 @@
             gap: 0.5rem;
             border-radius: 15px;
             width: 200px;
+        }
+
+        .ar-start-button.invisible {
+            display: none;
         }
 
         .ar-start-button.disabled {
